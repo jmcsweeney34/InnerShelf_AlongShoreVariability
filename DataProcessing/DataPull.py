@@ -6,21 +6,39 @@ Written by Jack McSweeney (Tech Support: Zech Thurman)
 October 12, 2019 
 """
 
+# import numpy as np
+# from scipy.io import loadmat
 
-import numpy as np
+
+# matdir = '/Volumes/InnerShelf1/JackAnalysis/McSweeney_data/InnerShelf_AlongShoreVariability/Moorings/'
+# moorings = np.array(['MS100', 'OS50', 'OC40N'])
+
+# for mooring in moorings:
+#     filepath = matdir + mooring
+#     mooring = loadmat(filepath, appendmat=True)
+
+
+# # def DataPull(matdir: str, entities: np.array):
+# #     for entity in entities:
+# #         filepath = matdir + entity
+# #         entity = loadmat(filepath, appendmat=True)
+# #     return
+
+#def DataPull():
 from scipy.io import loadmat
+import numpy as np 
 
+dir= '/Volumes/InnerShelf1/JackAnalysis/McSweeney_data/InnerShelf_AlongShoreVariability/'
 
-matdir = '/Volumes/InnerShelf1/JackAnalysis/McSweeney_data/InnerShelf_AlongShoreVariability/Moorings/'
-moorings = np.array(['MS100', 'OS50', 'OC40N'])
+fnames= np.array(['MS100','OC50','OC40N'])
 
-for mooring in moorings:
-    filepath = matdir + mooring
-    mooring = loadmat(filepath, appendmat=True)
+#loadedmats={}
+fext='.mat'
 
-
-# def DataPull(matdir: str, entities: np.array):
-#     for entity in entities:
-#         filepath = matdir + entity
-#         entity = loadmat(filepath, appendmat=True)
-#     return
+for moor in fnames:
+    filepath=(dir+'Moorings/'+moor+fext)
+    print(filepath)
+#    loadedmats["{0}".format(moor)]=loadmat(filepath)
+    globals()[moor] = loadmat(filepath)
+    
+#    return 
